@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Social Media Warmup</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="app">
+        <!-- Username Input Screen -->
+        <div id="username-screen">
+            <h1>Warmup Checklist</h1>
+            <input type="text" id="username" placeholder="Enter your Tiktok username">
+            <button id="start-btn">Start the warmup</button>
+            <p>Average duration 10 minutes</p>
+        </div>
+
+        <!-- Step Screen -->
+        <div id="step-screen" style="display: none;">
+            <div class="step-content">
+                <h2 id="step-title"></h2>
+                <p id="step-instructions"></p>
+                <!-- Horizontal scrolling list container -->
+                <div id="horizontal-list-container" style="display: none;">
+                    <div class="list-title" id="list-title">Suggested Keywords:</div>
+                    <div class="horizontal-list" id="horizontal-list"></div>
+                </div>
+            </div>
+            <!-- Next button will be fixed at bottom -->
+            <button id="next-btn" disabled>I'm done, go to next step</button>
+        </div>
+
+        <!-- Success Screen -->
+        <div id="success-screen" style="display: none;">
+            <h1>Congratulations!</h1>
+            <p>You've completed the warmup!</p>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
