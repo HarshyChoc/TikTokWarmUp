@@ -1,4 +1,4 @@
-const GSCRIPT_MACRO_URL = "https://script.google.com/macros/s/AKfycbx2qnUImAcslVS6n4CC1Mazhb4TiKObDxurndtc4q7EszJ9WfrM2LkUCjzneIjSqsxU/exec";
+const GSCRIPT_MACRO_URL = "https://script.google.com/macros/s/AKfycbzQmuLPKGOcd_3qilhfoWtgmSoE5aoVaRXTOrs6dYLnjxq-NxgPW80Z8V4QhQyqDDoO/exec";
 
 
 // Define the steps with titles, instructions, demo videos, and durations
@@ -6,33 +6,24 @@ const GSCRIPT_MACRO_URL = "https://script.google.com/macros/s/AKfycbx2qnUImAcslV
 const steps = [
     {
         title: "Step 1: Follow Accounts",
-        instructions: "Follow between 10-15 accounts from the following list",
+        instructions: "Follow between 10-15 accounts from the following list. If you followed all, follow different accounts within this niche",
         // demo: "steps/follow.mp4",
         duration: 60, // 1 minute
         listItems: [
-            "atwistofdate",
-            "camisandra_",
-            "couplevxsion",
-            "couple_cards",
-            "mikaylarami",
-            "estherperel_official",
-            "locketcamera",
-            "servdcards",
-            "postthoughts",
-            "textsbyamalia",
-            "ayearofus",
-            "withlovesabrinaflores",
-            "withlovesabrinaflores",
-            "fullmooncouples",
-            "forplay.cards",
-            "couple_cards",
-            "therapyjeff",
-            "fill_your_cup",
-            "zestcouplesgame",
-            "meetcutesnyc",
-            "jacobandjuliaaa",
-            "danhentschel_",
-            "thelovedrive",
+            "thefairygodfather",
+            "nycdatenite",
+            "rebeccalynnpope",
+            "tessamac1",
+            "evinroselovecoach",
+            "byronjamal",
+            "datingwithelsa",
+            "canadasdatingcoach",
+            "justinemfulama",
+            "the_true_feminine_",
+            "mattartisan",
+            "karleyscottcollins",
+            "hannahwitton",
+            "natviolette"
         ]
     },
     {
@@ -78,6 +69,7 @@ const stepInstructions = document.getElementById("step-instructions");
 const nextBtn = document.getElementById("next-btn");
 const startBtn = document.getElementById("start-btn");
 const usernameInput = document.getElementById("username");
+// const testCompleteBtn = document.getElementById("test-complete-btn");
 // const restartVideoBtn = document.getElementById("restart-video-btn");
 // const playVideoBtn = document.getElementById("play-video-btn");
 const horizontalListContainer = document.getElementById("horizontal-list-container");
@@ -301,21 +293,38 @@ nextBtn.addEventListener("click", () => {
 });
 
 // Update Google Spreadsheet
-function updateSpreadsheet(username) {
-    fetch(GSCRIPT_MACRO_URL, {
-        method: "POST",
-        mode: 'no-cors', // Add no-cors mode to bypass CORS restrictions
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ username: username })
-    })
-        .then(response => {
-            // With no-cors, we can't access the response content
-            console.log("Request sent successfully");
-            return { success: true };
-        })
-        .catch(error => console.error("Error updating spreadsheet:", error));
-}
+// function updateSpreadsheet(username) {
+//     fetch(GSCRIPT_MACRO_URL, {
+//         method: "POST",
+//         mode: 'no-cors', // Add no-cors mode to bypass CORS restrictions
+//         headers: { "Content-Type": "application/json" },
+//         body: JSON.stringify({ username: username })
+//     })
+//         .then(response => {
+//             // With no-cors, we can't access the response content
+//             console.log("Request sent successfully");
+//             return { success: true };
+//         })
+//         .catch(error => console.error("Error updating spreadsheet:", error));
+// }
 
+function updateSpreadsheet(username) {
+    const payload = {
+      username: username,
+      platform: 'tiktok'   
+    };
+  
+    fetch(GSCRIPT_MACRO_URL, {
+      method: "POST",
+      mode: "no-cors",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload)
+    })
+      .then(() => {
+        console.log("Request sent with Instagram flag");
+      })
+      .catch(error => console.error("Error updating spreadsheet:", error));
+  }
 // Function to show toast notification
 function showToast(message) {
     // Clear any existing timeout
@@ -349,3 +358,30 @@ function showToast(message) {
         }, 300);
     }, 2000);
 }
+
+// // Test Complete Button Logic
+// testCompleteBtn.addEventListener("click", () => {
+//     username = usernameInput.value.trim();
+//     if (!username) {
+//         username = "test_user_" + Date.now(); // Generate a test username if none provided
+//     }
+    
+//     // Clear any existing timers
+//     if (timerInterval) {
+//         clearInterval(timerInterval);
+//     }
+    
+//     // Skip all steps and go directly to success screen
+//     usernameScreen.style.display = "none";
+//     stepScreen.style.display = "none";
+//     successScreen.style.display = "block";
+//     successScreen.classList.add("fade-in");
+    
+//     // Post to sheets immediately
+//     updateSpreadsheet(username);
+    
+//     // Show success message
+//     showToast("🧪 Test completed! Posted to sheets.");
+    
+//     console.log("🧪 Test mode: Auto-completed warm-up for user:", username);
+// });
