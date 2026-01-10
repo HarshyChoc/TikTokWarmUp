@@ -89,7 +89,7 @@ const steps = [
     },
     {
         title: "Step 4: Engage in Main Feed",
-        instructions: "Scroll on the main feed. Stop only at posts related to the Relationship, family, and life niche. Engage with the posts in any way you want (commenting, liking, saving).",
+        instructions: "Scroll on the main feed. Stop only at posts related to the Gen Z niche. Engage with the posts in any way you want (commenting, liking, saving).",
         // demo: "steps/feed.mp4",
         duration: 180 // 5 minutes
     }
@@ -105,6 +105,7 @@ const stepInstructions = document.getElementById("step-instructions");
 const nextBtn = document.getElementById("next-btn");
 const startBtn = document.getElementById("start-btn");
 const usernameInput = document.getElementById("username");
+const completionMessage = document.getElementById("completion-message");
 // const testCompleteBtn = document.getElementById("test-complete-btn");
 // const restartVideoBtn = document.getElementById("restart-video-btn");
 // const playVideoBtn = document.getElementById("play-video-btn");
@@ -308,6 +309,22 @@ function formatTime(seconds) {
     return `${minutes}:${secs < 10 ? "0" : ""}${secs}`;
 }
 
+function formatCompletionDateTime(date) {
+    return date.toLocaleString(undefined, {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+        hour: "numeric",
+        minute: "2-digit"
+    });
+}
+
+function updateCompletionMessage() {
+    if (!completionMessage) return;
+    const formattedDateTime = formatCompletionDateTime(new Date());
+    completionMessage.textContent = `Congrats on completing warm up for ${formattedDateTime}`;
+}
+
 // Next Button Logic
 nextBtn.addEventListener("click", () => {
     clearInterval(timerInterval);
@@ -324,6 +341,7 @@ nextBtn.addEventListener("click", () => {
         stepScreen.style.display = "none";
         successScreen.style.display = "block";
         successScreen.classList.add("fade-in");
+        updateCompletionMessage();
         updateSpreadsheet(username);
     }
 });
